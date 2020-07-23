@@ -1261,3 +1261,100 @@ body {
     display: none;
   }
 }
+
+#order {
+  /* The container must be positioned relative: */
+
+  .custom-select {
+    position: relative;
+  }
+
+  .custom-select select {
+
+    display: none; /*hide original SELECT element: */
+  }
+
+  .select-selected {
+
+    line-height: 46px;
+    text-align: left;
+    color: rgb(46, 50, 42);
+    font-family: "GilroyRegular", sans-serif;
+    font-size: 14px;
+    width: 210px;
+    margin-top: 35px;
+    outline: 0;
+    padding-left: 30px;
+    border-width: 1px;
+    border-color: rgb(143, 188, 98);
+    border-style: solid;
+    box-shadow: 0 0 23px 2px rgba(31, 168, 37, 0.13);
+    height: 46px;
+    border-radius: 24px;
+    background-color: #ffffff;
+  }
+
+  /* Style the arrow inside the select element: */
+
+  .select-selected:after {
+    position: absolute;
+    content: url("../../images/select-arrow.png");
+    top: 39px;
+    right: 44px;
+    width: 0;
+    height: 0;
+  }
+
+  /* Point the arrow upwards when the select box is open (active): */
+
+  /* style the items (options), including the selected item: */
+
+  .select-items div, .select-selected {
+    color: rgb(46, 50, 42);
+    font-family: "GilroyRegular", sans-serif;
+    font-size: 14px;
+    line-height: 46px;
+    text-align: left;
+    padding: 0 0 0 30px;
+    cursor: pointer;
+  }
+
+  /* Style items (options): */
+
+  .select-items {
+    overflow-y: scroll;
+    height: 146px;
+    border-width: 1px;
+    border-color: rgb(143, 188, 98);
+    border-style: solid;
+    color: rgb(46, 50, 42);
+    position: absolute;
+    background-color: #ffffff;
+    top: 99%;
+    left: 0;
+    right: 18px;
+    z-index: 99;
+  }
+
+  /* Hide the items when the select box is closed: */
+
+  .select-hide {
+    display: none;
+  }
+
+  .select-items div:hover, .same-as-selected {
+    color: #80a506;
+  }
+  .select-items::-webkit-scrollbar {
+    width: 5px;
+    height: 130px;
+    background: #fff;
+  }
+
+  .select-items::-webkit-scrollbar-thumb {
+    background: #80a506;
+    border-right: 2px white solid;
+    background-clip: padding-box;
+    border-radius: 5px;
+  }
+}

@@ -636,6 +636,18 @@
     #order-content #order #order-make #order-make-action {
         margin: 30px auto;
     }
+    #order .select-selected {
+        width: 196px;
+        margin-left: 16px;
+    }
+    #order .select-items {
+        left: 16px;
+        right: 16px;
+        height: 241px;
+    }
+    .input-place.custom-select .error-type {
+        left: 31px;
+    }
 }
 
 
