@@ -300,6 +300,12 @@
     }
 }
 
+@media screen and (max-width: 861px) {
+    #main #header #menu a {
+        margin-right: 31px;
+    }
+}
+
 @media screen and (max-width: 767px) {
     #main #header #menu {
         flex-direction: column;
@@ -330,7 +336,26 @@
         display: flex !important;
     }
 
+    .menu-leave-top, .menu-leave-bottom {
+        position: absolute;
+        width: 60px;
+    }
+
+    #main #header #menu a .menu-leave-top {
+        top: -20px;
+        left: -25px;
+        display: block;
+    }
+
+
+    #main #header #menu a .menu-leave-bottom {
+        bottom: -20px;
+        right: -17px;
+        display: block;
+    }
+
     #main #header #menu a {
+        position: relative;
         order: 2;
         margin: 13px;
         color: white;
@@ -342,17 +367,21 @@
     }
 
     #main #header #menu a:nth-child(2) {
-        margin-top: 57px;;
+        margin-top: 110px;
     }
 
     #main #header #menu #menu-close {
         display: block;
         position: absolute;
-        top: 30px;
-        right: 30px;
+        top: 33px;
+        right: 35px;
         padding: 10px 10px 7px 10px;
         border-radius: 50%;
         border: 2px solid white;
+    }
+
+    #main #header #menu #menu-close img {
+
     }
 
     #main #header #menu #logo {
@@ -579,29 +608,34 @@
     #order-content #order {
         width: 280px;
     }
+
     #order-content #order #order-make {
         width: 280px;
         justify-content: center;
     }
+
     #order-content #order #order-make .block-title {
         font-size: 39px;
     }
+
     #order-content #order #order-make #order-make-inputs #count {
         padding-left: 35px;
         width: 185px;
     }
+
     #order-content #order #order-make #order-make-inputs input {
         width: 185px;
         margin-top: 25px;
     }
+
     #order-content #order #order-make #order-make-action .btn {
         padding: 23px 41px;
         font-size: 17px;
     }
 
-#order-content #order #order-make #order-make-action {
-    margin: 30px auto;
-}
+    #order-content #order #order-make #order-make-action {
+        margin: 30px auto;
+    }
 }
 
 
@@ -648,8 +682,14 @@
 
 @media screen and (max-width: 424px) {
     #main {
-        background-position: right;
+        background-position: center;
+        background-size: cover;
     }
+
+    #main #main-block #main-action {
+        padding-bottom: 140px;
+    }
+
 
     #products #products-items .product-item .product-img img {
         margin-left: 20px;
