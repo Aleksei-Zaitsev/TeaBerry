@@ -201,10 +201,50 @@ $( document ).ready(function() {
          $('.new-select').css('border-bottom-right-radius', '24px');
      });
 
+     // Валидация и отправка промокода на почту клиента
 
-     // Валидация
+    $('#get-discount-form-action').click(function () {
+        let hasErr = false;
+        $('.error-type').css('display', 'none');
 
-    let loader = $('#loader');
+        let clientemail = $('#get-discount-form-input > input');
+        clientemail.css('borderColor', 'rgb(143, 188, 98)');
+        clientemail.css('boxShadow', '0 0 0 0 white');
+
+        if (clientemail.val()) {
+            $.ajax({
+                type: 'post',
+                url: 'mail-promocode.php',
+                data: 'clientemail=' + clientemail.val(),
+                success: () => {
+                    $('#get-discount-done').show();
+                    $('#get-discount-form-input').hide();
+                    $('#get-discount-form-action').hide();
+                },
+                error: () => {
+                    alert('Ошибка бронирования. Свяжитесь, пожалуйста, по номеру телефона.');
+                }
+            })
+        } else {
+            if (!clientemail.val()) {
+                clientemail.siblings('.error-type').css('display', 'block');
+                clientemail.css('borderColor', 'rgba(187,22,47)')
+                clientemail.css('boxShadow', '0 0 3px 3px rgb(187,22,47,0.25)')
+                hasErr = true;
+            }
+            if (clientemail.val()) {
+
+                clientemail.css('borderColor', 'rgb(22,187,30)')
+                clientemail.css('boxShadow', '0 0 3px 3px rgb(22,187,30,0.25)')
+
+            }
+            if (hasErr) {
+                return;
+            }
+        }
+    })
+     // Валидация об отправке заказа на почту владельца сайта
+
     $('#make-order-btn').click(function () {
         let hasError = false;
         $('.error-type').css('display', 'none');
@@ -222,90 +262,78 @@ $( document ).ready(function() {
         select.css('borderColor', 'rgb(143, 188, 98)');
         select.css('boxShadow', '0 0 0 0 white');
 
-        if (!name.val()) {
-            name.siblings('.error-type').css('display', 'block');
-            name.css('borderColor', 'rgba(187,22,47)')
-            name.css('boxShadow', '0 0 3px 3px rgb(187,22,47,0.45)')
-            hasError = true;
-        }
 
-        if (name.val()) {
 
-            name.css('borderColor', 'rgb(22,187,30)')
-            name.css('boxShadow', '0 0 3px 3px rgb(22,187,30,0.45)')
-
-        }
-
-        if (!count.val()) {
-            count.siblings('.error-type').css('display', 'block');
-            count.css('borderColor', 'rgba(187,22,47)')
-            count.css('boxShadow', '0 0 3px 3px rgb(187,22,47,0.45)')
-            hasError = true;
-        }
-
-        if (count.val()) {
-            count.css('borderColor', 'rgb(22,187,30)')
-            count.css('boxShadow', '0 0 3px 3px rgb(22,187,30,0.45)')
-        }
-
-        if (!phone.val()) {
-            phone.siblings('.error-type').css('display', 'block');
-            phone.css('borderColor', 'rgba(187,22,47)')
-            phone.css('boxShadow', '0 0 3px 3px rgb(187,22,47,0.45)')
-            hasError = true;
-        }
-
-        if (phone.val()) {
-            phone.css('borderColor', 'rgb(22,187,30)')
-            phone.css('boxShadow', '0 0 3px 3px rgb(22,187,30,0.45)')
-        }
-        if (!select.val()) {
-            select.siblings('.error-type').css('display', 'block');
-            $('.select-selected').css('borderColor', 'rgba(187,22,47)')
-            $('.select-selected').css('boxShadow', '0 0 3px 3px rgb(187,22,47,0.45)')
-            hasError = true;
-        }
-
-        if (select.val()) {
-            $('.select-selected').css('borderColor', 'rgb(22,187,30)')
-            $('.select-selected').css('boxShadow', '0 0 3px 3px rgb(22,187,30,0.45)')
-        }
-
-        if (hasError) {
-            return;
-        }
-
-        // let http = new XMLHttpRequest();
-        // http.open('GET', url);
-        // http.send();
-        //
-        // http.onreadystatechange = function () {
-        //     if (http.readyState === 4 && http.status === 200) {
-        //         let result = JSON.parse(http.responseText);
-        //         if (result) {
-        //
-        //         } else  {
-        //
-        //         }
-        //     }
-        // }
-
-        loader.css('display', 'flex');
-        $.ajax({
-            method: "POST",
-            url: 'https://itlogia.ru/test/checkout',
-            data: {name: name.val(), address: address.val(), phone: phone.val()}
-        })
-            .done(function (message) {
-                loader.hide();
-                if (message.success) {
-                    $('#order-form').hide();
-                    $('#replace-container').show();
-
-                } else {
-                    alert('Возникла ошибка при оформлении заказа, позвоните нам и сделайте заказ');
+        if (name.val() && count.val() && select.val() && phone.val()) {
+            $.ajax({
+                type: 'post',
+                url: 'mail.php',
+                data: 'name=' + name.val() + '&count=' + count.val() + '&phone=' + phone.val() + '&select=' + select.val(),
+                success: () => {
+                    $('#order-done').show();
+                    $('#order-make').hide();
+                },
+                error: () => {
+                    alert('Ошибка бронирования. Свяжитесь, пожалуйста, по номеру телефона.');
                 }
-            });
+            })
+        } else {
+            if (!name.val()) {
+                name.siblings('.error-type').css('display', 'block');
+                name.css('borderColor', 'rgba(187,22,47)')
+                name.css('boxShadow', '0 0 3px 3px rgb(187,22,47,0.25)')
+                hasError = true;
+            }
+
+            if (name.val()) {
+
+                name.css('borderColor', 'rgb(22,187,30)')
+                name.css('boxShadow', '0 0 3px 3px rgb(22,187,30,0.25)')
+
+            }
+
+            if (!count.val()) {
+                count.siblings('.error-type').css('display', 'block');
+                count.css('borderColor', 'rgba(187,22,47)')
+                count.css('boxShadow', '0 0 3px 3px rgb(187,22,47,0.25)')
+                hasError = true;
+            }
+
+            if (count.val()) {
+                count.css('borderColor', 'rgb(22,187,30)')
+                count.css('boxShadow', '0 0 3px 3px rgb(22,187,30,0.25)')
+            }
+
+            if (!phone.val()) {
+                phone.siblings('.error-type').css('display', 'block');
+                phone.css('borderColor', 'rgba(187,22,47)')
+                phone.css('boxShadow', '0 0 3px 3px rgb(187,22,47,0.25)')
+                hasError = true;
+            }
+
+            if (phone.val()) {
+                phone.css('borderColor', 'rgb(22,187,30)')
+                phone.css('boxShadow', '0 0 3px 3px rgb(22,187,30,0.25)')
+            }
+            if (!select.val()) {
+                select.siblings('.error-type').css('display', 'block');
+                $('.select-selected').css('borderColor', 'rgba(187,22,47)')
+                $('.select-selected').css('boxShadow', '0 0 3px 3px rgb(187,22,47,0.25)')
+                hasError = true;
+            }
+
+            if (select.val()) {
+                $('.select-selected').css('borderColor', 'rgb(22,187,30)')
+                $('.select-selected').css('boxShadow', '0 0 3px 3px rgb(22,187,30,0.25)')
+            }
+
+            if (hasError) {
+                return;
+            }
+        }
+
+
+
     })
     //  Адаптив видео
     function checkWidth() {

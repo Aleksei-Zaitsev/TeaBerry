@@ -99,9 +99,11 @@ body {
         font-family: "GilroyRegular", sans-serif;
         color: rgb(46, 50, 42);
         margin-right: 50px;
+
         .menu-leave-bottom {
           display: none;
         }
+
         .menu-leave-top {
           display: none;
         }
@@ -620,9 +622,20 @@ body {
           color: rgb(255, 255, 255);
         }
       }
+
+      #get-discount-done {
+        font-family: "GilroyRegular", sans-serif;
+        font-size: 22px;
+        display: none;
+        width: 413px;
+        border: 2px solid green;
+        border-radius: 33px;
+        padding: 52px 5px;
+      }
     }
   }
 }
+
 
 #tea-properties {
   padding-bottom: 250px;
@@ -1248,6 +1261,19 @@ body {
   }
 }
 
+#get-discount-form-input {
+  position: relative;
+  .error-type {
+    font-family: GilroyRegular, sans-serif;
+    position: absolute;
+    bottom: -22px;
+    left: 133px;
+    color: rgba(255, 0, 0, 0.7);
+    font-size: 15px;
+    display: none;
+  }
+}
+
 .input-place {
   position: relative;
 
@@ -1345,6 +1371,7 @@ body {
   .select-items div:hover, .same-as-selected {
     color: #80a506;
   }
+
   .select-items::-webkit-scrollbar {
     width: 5px;
     height: 130px;
