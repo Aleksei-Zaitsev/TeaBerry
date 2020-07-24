@@ -484,4 +484,12 @@ $( document ).ready(function() {
     /* If the user clicks anywhere outside the select box,
     then close all select boxes: */
     document.addEventListener("click", closeAllSelect);
+
+    // arrow-up
+    let arrowUp = $('#arrow-up svg');
+    arrowUp.click(() => {
+        $('html, body').animate({
+            scrollTop: $("#header").offset().top
+        }, 2000);
+    })
 });

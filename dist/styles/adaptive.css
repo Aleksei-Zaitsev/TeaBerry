@@ -256,6 +256,9 @@
 }
 
 @media screen and (max-width: 890px) {
+    #scroll-arrow-up #arrow-up {
+        display: none;
+    }
     #order-content #order {
         width: 500px;
     }
@@ -270,7 +273,7 @@
 
     #video-review #video-review-content #video-review-img-bg {
         position: absolute;
-        bottom: -128px;
+        bottom: -118px;
     }
 
     #get-discount #get-discount-content {
